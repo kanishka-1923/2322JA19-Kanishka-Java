@@ -1,0 +1,80 @@
+package day7;
+	import java.sql;
+	import java.util.Scanner;
+	import java.sql.DriverManager;
+	import java.sql.Connection;
+
+	public class StudentDBManager {
+	    public static void main(String[] args) {
+	         String URL = "jdbc:mysql://localhost:3306/studentdb";
+	         String USER = "root";
+	         String PASS = ""; 
+	        Scanner sc = new Scanner(System.in);
+	        Connection conn = null;
+	        try {
+	            // Step 1: Connect to DB
+	            conn = DriverManager.getConnection(URL, USER, PASS);
+	            System.out.println(" Connected to MySQL Database.");
+	            while (true) {
+	                System.out.println("\n--- Student DB Menu ---");
+	                System.out.println("1. Insert Student");
+	                System.out.println("2. Display Students");
+	                System.out.println("3. Exit");
+	                System.out.print("Enter your choice: ");
+	                int choice = sc.nextInt();
+
+	                if (choice == 1) {
+
+	                    System.out.print("Enter ID: ");
+	                    int id = sc.nextInt();
+	                    sc.nextLine(); // clear buffer
+	                    System.out.print("Enter Name: ");
+	                    String name = sc.nextLine();
+	                    System.out.print("Enter Department: ");
+	                    String dept = sc.nextLine();
+	                    System.out.print("Enter Marks: ");
+	                    float marks = sc.nextFloat();
+	                    String insertQuery = "INSERT INTO students (id, name, department, marks) VALUES (?, ?, ?, ?)";
+	                    PreparedStatement pstmt = conn.prepareStatement(insertQuery);
+	                    pstmt.setInt(1, id);
+	                    pstmt.setString(2, name);
+	                    pstmt.setString(3, dept);
+	                    pstmt.setFloat(4, marks);
+
+	                    int rows = pstmt.executeUpdate();
+	                    System.out.println("✅ " + rows + " student inserted successfully!");
+
+	                } else if (choice == 2) {
+	                    // Display Students
+	                    Statement stmt = conn.createStatement();
+	                    ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+
+	                    System.out.println("\nID\tName\t\tDepartment\tMarks");
+	                    System.out.println("---------------------------------------------");
+	                    while (rs.next()) {
+	                        System.out.printf("%d\t%-10s\t%-10s\t%.2f\n",
+	                                rs.getInt("id"),
+	                                rs.getString("name"),
+	                                rs.getString("department"),
+	                                rs.getFloat("marks"));
+	                    }
+
+	                } else if (choice == 3) {
+	                    System.out.println(" Exiting...");
+	                    break;
+	                } else {
+	                    System.out.println(" Invalid choice. Try again.");
+	                }
+	            }
+	        } catch (Exception e) {
+	            System.out.println("Error: " + e.getMessage());
+	        } finally {
+	            try {
+	                if (conn != null) conn.close();
+	            } catch (SQLException se) {
+	                System.out.println(" Error closing connection.");
+	            }
+	        }
+	    }
+	}
+
