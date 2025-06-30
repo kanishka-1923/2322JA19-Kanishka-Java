@@ -1,0 +1,166 @@
+mysql> use tasks;
+Database changed
+mysql> create table studentdetails( 
+    -> rollno int,name varchar(10),mark1 int, mark2 int, mark3 int); 
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>  create table course(courseid int,coursename varchar(10),instructorname varchar(10));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into studentdetails values 
+    -> (1,'Kani',100,99,90),(2,'vani',67,89,90),(3,'Ashwini',90,89,87),(4,'Rohini',100,99,99),(5,'Nikitha',90,100,90); 
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdetails;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | mark3 |
++--------+---------+-------+-------+-------+
+|      1 | Kani    |   100 |    99 |    90 |
+|      2 | vani    |    67 |    89 |    90 |
+|      3 | Ashwini |    90 |    89 |    87 |
+|      4 | Rohini  |   100 |    99 |    99 |
+|      5 | Nikitha |    90 |   100 |    90 |
++--------+---------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into course values(01,'Java','Kanishka'),(02,'Python','dharsh'),(03,'Linux','veda'),(04,'C++','rohini'),(05,'dSA','sahami');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from course;
++----------+------------+----------------+
+| courseid | coursename | instructorname |
++----------+------------+----------------+
+|        1 | Java       | Kanishka       |
+|        2 | Python     | dharsh         |
+|        3 | Linux      | veda           |
+|        4 | C++        | rohini         |
+|        5 | dSA        | sahami         |
++----------+------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table course add column coursefee int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update course  set coursefee=50000;
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from course;
++----------+------------+----------------+-----------+
+| courseid | coursename | instructorname | coursefee |
++----------+------------+----------------+-----------+
+|        1 | Java       | Kanishka       |     50000 |
+|        2 | Python     | dharsh         |     50000 |
+|        3 | Linux      | veda           |     50000 |
+|        4 | C++        | rohini         |     50000 |
+|        5 | dSA        | sahami         |     50000 |
++----------+------------+----------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table bookcount(bookno int,bookname varchar(90),countno int(90));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> insert into bookcount values(01,'The Origin',800),(02,'Cindrella',1000),(03,'Python',800),(04,'fairytales',1000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from bookcount;
++--------+------------+---------+
+| bookno | bookname   | countno |
++--------+------------+---------+
+|      1 | The Origin |     800 |
+|      2 | Cindrella  |    1000 |
+|      3 | Python     |     800 |
+|      4 | fairytales |    1000 |
++--------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table Students(personid int,membername varchar(90),dop date);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into  members values (01,'Kanishka','2025-08-19'),(02,'Vani','2025-04-19'),(102,'Nikitha','2025-05-03'),(103,'aakash','2025-06-05');
+ERROR 1146 (42S02): Table 'tasks.members' doesn't exist
+mysql> insert into  students values (01,'Kanishka','2025-08-19'),(02,'Vani','2025-04-19'),(102,'Nikitha','2025-05-03'),(103,'aakash','2025-06-05');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> create table staff(empno id,empname varchar(10),salary int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id,empname varchar(10),salary int)' at line 1
+mysql> create table staff(empno int,name varchar(12),salary int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into staff values(11,'Kani',8000),(12,'vani',9000),(13,'hari',10000),(14,'charli',10000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from staff;
++-------+--------+--------+
+| empno | name   | salary |
++-------+--------+--------+
+|    11 | Kani   |   8000 |
+|    12 | vani   |   9000 |
+|    13 | hari   |  10000 |
+|    14 | charli |  10000 |
++-------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from studentdetails;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | mark3 |
++--------+---------+-------+-------+-------+
+|      1 | Kani    |   100 |    99 |    90 |
+|      2 | vani    |    67 |    89 |    90 |
+|      3 | Ashwini |    90 |    89 |    87 |
+|      4 | Rohini  |   100 |    99 |    99 |
+|      5 | Nikitha |    90 |   100 |    90 |
++--------+---------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from course;
++----------+------------+----------------+-----------+
+| courseid | coursename | instructorname | coursefee |
++----------+------------+----------------+-----------+
+|        1 | Java       | Kanishka       |     50000 |
+|        2 | Python     | dharsh         |     50000 |
+|        3 | Linux      | veda           |     50000 |
+|        4 | C++        | rohini         |     50000 |
+|        5 | dSA        | sahami         |     50000 |
++----------+------------+----------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table Employee(Empname varchar(30),Empno int,city varchar(30),address varchar(30));
+Query OK, 0 rows affected (0.07 sec)
+mysql> insert into Employee values('kanish',10,'rspuram','cbe'),('dharsh',11,'saravampatti','cbe'),('dharsh',12,'veerapandi','cbe');
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++---------+-------+--------------+---------+
+| Empname | Empno | city         | address |
++---------+-------+--------------+---------+
+| kanish  |    10 | rspuram      | cbe     |
+| dharsh  |    11 | saravampatti | cbe     |
+| dharsh  |    12 | veerapandi   | cbe     |
++---------+-------+--------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table department(deptname varchar(30),deptno int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into department values('BCA',45),('Bsc.IT',67);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----------+--------+
+| deptname | deptno |
++----------+--------+
+| BCA      |     45 |
+| Bsc.IT   |     67 |
++----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> notee;

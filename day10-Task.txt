@@ -1,0 +1,173 @@
+mysql> create table  mark(regno int,name varchar(90),marks int);
+ERROR 1046 (3D000): No database selected
+mysql> use tasks;
+Database changed
+mysql> create table  mark(regno int,name varchar(90),marks int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into  mark values(1,'Kani',90),(2,'dhari',99),(3,'nikitha',81),(4,'vaani',76),(5,'rohini',80);
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from mark;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|     1 | Kani    |    90 |
+|     2 | dhari   |    99 |
+|     3 | nikitha |    81 |
+|     4 | vaani   |    76 |
+|     5 | rohini  |    80 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select marks from mark where marks>80;
++-------+
+| marks |
++-------+
+|    90 |
+|    99 |
+|    81 |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from courses;
+ERROR 1146 (42S02): Table 'tasks.courses' doesn't exist
+mysql> select * from course;
++----------+------------+----------------+-----------+
+| courseid | coursename | instructorname | coursefee |
++----------+------------+----------------+-----------+
+|        1 | Java       | Kanishka       |     50000 |
+|        2 | Python     | dharsh         |     50000 |
+|        3 | Linux      | veda           |     50000 |
+|        4 | C++        | rohini         |     50000 |
+|        5 | dSA        | sahami         |     50000 |
++----------+------------+----------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> update course set coursefee=30000 where courseid=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update course set coursefee=70000 where courseid=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update course set coursefee=30000 where courseid=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from course order by coursefee;
++----------+------------+----------------+-----------+
+| courseid | coursename | instructorname | coursefee |
++----------+------------+----------------+-----------+
+|        2 | Python     | dharsh         |     30000 |
+|        3 | Linux      | veda           |     30000 |
+|        1 | Java       | Kanishka       |     50000 |
+|        4 | C++        | rohini         |     50000 |
+|        5 | dSA        | sahami         |     70000 |
++----------+------------+----------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select coursefee from course order by coursefee;
++-----------+
+| coursefee |
++-----------+
+|     30000 |
+|     30000 |
+|     50000 |
+|     50000 |
+|     70000 |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table books(BookId int,BookName varchar(90),BookCount int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into books values(111,'ThenaliRaman Stories',500),(222,'Fairy Tales',700),(333,'TheJungleBook',600),(444,'BhagavadGita',900),(555,'Bible',800); 
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> Query OK, 5 rows affected (0.002 sec) 
+    -> ^C
+mysql> insert into books values(111,'ThenaliRaman Stories',500),(222,'Fairy Tales',700),(333,'TheJungleBook',600),(444,'BhagavadGita',900),(555,'Bible',800); 
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+mysql> select * from books;
+ERROR 1146 (42S02): Table 'tasks.books' doesn't exist
+mysql> create table books(BookId int,BookName varchar(90),BookCount int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into books values(111,'ThenaliRaman Stories',500),(222,'Fairy Tales',700),(333,'TheJungleBook',600),(444,'BhagavadGita',900),(555,'Bible',800);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++--------+----------------------+-----------+
+| BookId | BookName             | BookCount |
++--------+----------------------+-----------+
+|    111 | ThenaliRaman Stories |       500 |
+|    222 | Fairy Tales          |       700 |
+|    333 | TheJungleBook        |       600 |
+|    444 | BhagavadGita         |       900 |
+|    555 | Bible                |       800 |
++--------+----------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql>  select * from books where BookName like 'b%';
++--------+--------------+-----------+
+| BookId | BookName     | BookCount |
++--------+--------------+-----------+
+|    444 | BhagavadGita |       900 |
+|    555 | Bible        |       800 |
++--------+--------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> drop table Employee;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table employee(Customerid int,Firstname varchar(10),city varchar(10),age int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into employee values(1,'john','newyork',23),(2,'charle','newyork',23),(3,'wales','denmark',25);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------------+-----------+---------+------+
+| Customerid | Firstname | city    | age  |
++------------+-----------+---------+------+
+|          1 | john      | newyork |   23 |
+|          2 | charle    | newyork |   23 |
+|          3 | wales     | denmark |   25 |
++------------+-----------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where city='denmark';
++------------+-----------+---------+------+
+| Customerid | Firstname | city    | age  |
++------------+-----------+---------+------+
+|          3 | wales     | denmark |   25 |
++------------+-----------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee
+    -> where city = 'denmark';
++------------+-----------+---------+------+
+| Customerid | Firstname | city    | age  |
++------------+-----------+---------+------+
+|          3 | wales     | denmark |   25 |
++------------+-----------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee
+    -> where city='newyork';
++------------+-----------+---------+------+
+| Customerid | Firstname | city    | age  |
++------------+-----------+---------+------+
+|          1 | john      | newyork |   23 |
+|          2 | charle    | newyork |   23 |
++------------+-----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> notee;
